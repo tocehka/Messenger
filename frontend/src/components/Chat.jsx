@@ -75,12 +75,13 @@ const Chat = () => {
     return (
         <div className="chat-window">
             <div style={{borderBottom: "1px solid black", position: "fixed", top: 0, right: 0, width: "100%", fontSize: "24px"}}>Users in chat: {users.length}</div>
-            <div style={{marginTop: "20px", height: "88vh", overflowY: "auto", overflowX: "hidden", width: "90vw"}}>
-            <Stack spacing={2}>
+            <div style={{marginTop: "20px", height: "88vh", overflowY: "auto", overflowX: "none", display: "flex",
+            flexDirection: "row", justifyContent: "center"}}>
+            <Stack spacing={2} style={{width: "700px"}}>
                 {messages.map((message_info, inx) => {
                     let meIndicator = (message_info.user_color === user.user_color && message_info.user_name === user.user_name);
-                    return <div style={{border: "1px solid black", width: "90%"}} key={inx}>
-                        <span style={{color: message_info.user_color}}><b>{message_info.user_name}</b>{meIndicator && "(It is you)"}</span>
+                    return <div style={{border: "1px solid black", padding: "15px", marginLeft: meIndicator ? "auto": "none"}} key={inx}>
+                        <span style={{color: message_info.user_color}}><b>{message_info.user_name}</b> {meIndicator && "(It is you)"}</span>
                         <p>{message_info.message}</p>
                     </div>
                 })}
