@@ -1,0 +1,43 @@
+.global-loading {
+    animation: color-change 2s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    font-size: 30px;
+}
+
+@keyframes color-change {
+    0% { color: rgb(94, 214, 38); }
+    25% { color: rgb(198, 216, 37); }
+    50% { color: rgb(224, 146, 28); }
+    75% { color: rgb(214, 38, 38); }
+    100% { color: rgb(60, 219, 108); }
+}
+
+.main-container {
+    height: 100%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.login-container > :first-child {
+    width: 700px;
+}
+
+@media screen and (max-width: 600px) {
+    .login-container > :first-child {
+        width: 70vw;
+    }
+}
+
+.login-header {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
