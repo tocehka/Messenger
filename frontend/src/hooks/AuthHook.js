@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
-import {auth, cancel} from "@API/Auth";
+import {auth, cancel} from "../api/Auth";
 
 const authContext = createContext();
 
@@ -29,6 +29,7 @@ const useProvideAuth = () => {
     return {
         user,
         setUser,
+        setAuthLoading,
         authLoading
     }
 }

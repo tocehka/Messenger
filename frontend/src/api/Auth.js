@@ -20,4 +20,16 @@ const auth = (setUser, callback) => {
     })
 };
 
-export {auth, cancel}
+const login = (loginData, setUser, callback) => {
+    axiosInstance.post("/login", loginData)
+    .then(({data}) => {
+        setUser(data);
+        callback();
+    })
+    .catch(({response}) => {
+        console.log(response);
+        callback();
+    })
+};
+
+export {auth, login, cancel}

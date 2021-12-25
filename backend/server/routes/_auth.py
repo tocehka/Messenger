@@ -27,7 +27,7 @@ async def login(request):
     return resp
 
 async def auth(request):
-    user_info = request.cookie["user"]
+    user_info = request.cookies["user"]
     payload = json.loads(user_info)
 
     return json_response(payload)

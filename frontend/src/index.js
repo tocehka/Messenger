@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import {AuthWrapper} from "@hooks/AuthHook"
+import {AuthWrapper} from "./hooks/AuthHook";
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <AuthWrapper>
       <App />
-    </AuthWrapper>
-  </React.StrictMode>,
+    </AuthWrapper>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

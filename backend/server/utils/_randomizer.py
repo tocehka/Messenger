@@ -5,8 +5,11 @@ def generate_hex(max_value):
     return hex(generated_value).replace("0x", "")
 
 def create_hex_color():
-    r = generate_hex(255)
-    g = generate_hex(255)
-    b = generate_hex(255)
+    r1 = generate_hex(15)
+    r2 = generate_hex(15)
+    g1 = generate_hex(15)
+    g2 = generate_hex(15)
+    b1 = generate_hex(15)
+    b2 = generate_hex(15)
 
-    return f"#{r}{g}{b}"
+    return f"#{r1}{r2}{g1}{g2}{b1}{b2}"

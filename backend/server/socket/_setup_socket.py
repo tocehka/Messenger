@@ -14,17 +14,18 @@ async def configure_socket():
                     cors_allowed_origins=[origin for origin in ORIGINS.split(",")])
 
     @sio.event
-    async def connect(sid, environ, auth):
-        print('New user connection', sid, environ, auth)
+    async def connect(sid, environ):
+        pass
 
     @sio.event
     async def join(sid, data):
         user_name = data["user_name"]
+        user_color = data["user_color"]
         user_storage.append(user_name)
         print(f"User {user_name} joined to chat")
 
         sio.enter_room(sid, ROOM_NAME)
-        await sio.save_session(sid, {"user_name": user_name})
+        await sio.save_session(sid, {"user_name": user_name, "user_color": user_color})
 
         await sio.emit("users_online", data=user_storage, room=ROOM_NAME,
                         broadcast=True, include_self=True)
@@ -34,11 +35,12 @@ async def configure_socket():
         message = data["message"]
         async with sio.session(sid) as session:
             user_name = session["user_name"]
+            user_color = session["user_color"]
             print(f"User {user_name} sent message {message}")
 
             await sio.emit(
                 "broadcast_message", 
-                data={"user_name": user_name, "message": message},
+                data={"user_name": user_name, "user_color": user_color, "message": message},
                 room=ROOM_NAME,
                 broadcast=True, include_self=True
             )

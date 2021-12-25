@@ -2,10 +2,10 @@ from aiohttp.web import json_response, middleware
 
 @middleware
 async def auth_middleware(request, handler):
-    if handler.__name__ == "login":
+    if handler.__name__ in ["login", "_preflight_handler"]:
         return await handler(request)
 
-    auth_cookie = request.cookies["user"]
+    auth_cookie = request.cookies.get("user")
     if auth_cookie is not None:
         return await handler(request)
     else:
