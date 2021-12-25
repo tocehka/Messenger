@@ -17,6 +17,7 @@
 
 .main-container {
     height: 100%;
+    overflow: auto;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
@@ -40,4 +41,14 @@
 .login-header {
     margin-bottom: 20px;
     font-size: 20px;
+}
+
+.chat-window {
+    width: 700px;
+}
+
+@media screen and (max-width: 600px) {
+    .chat-window {
+        width: 100vw;
+    }
 }
