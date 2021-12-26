@@ -23,7 +23,7 @@ async def login(request):
         domain=DOMAIN,
         max_age=3600
     )
-
+    print(user_info)
     return resp
 
 async def auth(request):

@@ -5,8 +5,9 @@ from server.consts import ORIGINS
 
 ROOM_NAME = "chat"
 
-class UserStorage(list):
-    pass
+class UserStorage(dict):
+    def get_list(self):
+        return list(self.values())
 
 async def configure_socket():
     user_storage = UserStorage()
@@ -21,13 +22,13 @@ async def configure_socket():
     async def join(sid, data):
         user_name = data["user_name"]
         user_color = data["user_color"]
-        user_storage.append(user_name)
+        user_storage[sid] = data
         print(f"User {user_name} joined to chat")
 
         sio.enter_room(sid, ROOM_NAME)
         await sio.save_session(sid, {"user_name": user_name, "user_color": user_color})
 
-        await sio.emit("users_online", data=user_storage, room=ROOM_NAME,
+        await sio.emit("users_online", data=user_storage.get_list(), room=ROOM_NAME,
                         broadcast=True, include_self=True)
 
     @sio.event
@@ -51,9 +52,9 @@ async def configure_socket():
             user_name = session["user_name"]
             print(f"User {user_name} disconnected")
             sio.leave_room(sid, ROOM_NAME)
-            user_storage.remove(user_name)
+            user_storage.pop(sid)
 
-            await sio.emit("users_online", data=user_storage, room=ROOM_NAME,
+            await sio.emit("users_online", data=user_storage.get_list(), room=ROOM_NAME,
                         broadcast=True, include_self=True)
 
     return sio

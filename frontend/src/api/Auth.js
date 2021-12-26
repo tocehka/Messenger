@@ -21,6 +21,7 @@ const auth = (setUser, callback) => {
 };
 
 const login = (loginData, setUser, callback) => {
+    console.log("kek")
     axiosInstance.post("/login", loginData)
     .then(({data}) => {
         setUser(data);

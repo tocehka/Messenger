@@ -26,6 +26,13 @@ const LoginForm = () => {
         })
     }
 
+    const onPressSend = e => {
+        if (e.key === "Enter") {
+            loginApp();
+        }
+        
+    }
+
     return (
         <div className="login-container">
             <Box
@@ -45,6 +52,7 @@ const LoginForm = () => {
                     {validationError && <Alert severity="error">Your nickname can not be empty</Alert>}
                     <TextField  fullWidth value={username} label="Username" variant="outlined"
                         onChange={e => setUsername(e.target.value)}
+                        onKeyPress={e => onPressSend(e)}
                     />
                     <Button style={{width: "150px"}} variant="contained" onClick={() => loginApp()}>
                         Let me in!
